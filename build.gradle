@@ -1,3 +1,5 @@
+import org.gradle.internal.os.OperatingSystem
+
 plugins {
 	id "fabric-loom" version "1.4-SNAPSHOT"
 	id "legacy-looming" version "1.4-SNAPSHOT" // Version must be the same as fabric-loom's
@@ -8,7 +10,32 @@ base.archivesName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
-repositories {}
+var lwjglNatives = "";
+
+switch (OperatingSystem.current()) {
+	case OperatingSystem.LINUX:
+		def osArch = System.getProperty("os.arch")
+		lwjglNatives = osArch.startsWith("arm") || osArch.startsWith("aarch64")
+				? "natives-linux-${osArch.contains("64") || osArch.startsWith("armv8") ? "arm64" : "arm32"}"
+				: "natives-linux"
+		break
+	case OperatingSystem.MAC_OS:
+		lwjglNatives = System.getProperty("os.arch").startsWith("aarch64") ? "natives-macos-arm64" : "natives-macos"
+		break
+	case OperatingSystem.WINDOWS:
+		def osArch = System.getProperty("os.arch")
+		lwjglNatives = osArch.contains("64")
+				? "natives-windows${osArch.startsWith("aarch64") ? "-arm64" : ""}"
+				: "natives-windows-x86"
+		break
+}
+
+
+repositories {
+	maven { url = 'https://jitpack.io' }
+	mavenCentral()
+}
+
 
 loom {
 	// Only needed for versions not available from vanilla launcher by default.
@@ -33,6 +60,17 @@ dependencies {
 
 	// You can retrieve a specific api module using this notation.
 	// modImplementation(legacy.apiModule("legacy-fabric-item-groups-v1", project.fabric_version))
+
+	/*
+		Client Dependencies
+	 */
+	implementation platform("org.lwjgl:lwjgl-bom:3.3.2")
+
+	implementation("com.github.Sol-Client:LWJGL-Patched:bf1d105853")
+
+	runtimeOnly "org.lwjgl:lwjgl::$lwjglNatives"
+	runtimeOnly "org.lwjgl:lwjgl-nanovg::$lwjglNatives"
+	runtimeOnly "org.lwjgl:lwjgl-stb::$lwjglNatives"
 }
 
 processResources {
