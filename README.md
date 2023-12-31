@@ -1,43 +1,8 @@
-# Fabric Example Mod
+# NanoVG Client Base
 
-- [Quick start guide](#quick-start-guide)
-  - [Introduction to the folder structure](#introduction-to-the-folder-structure)
-  - [Creating your mod](#creating-your-mod)
-  - [Useful gradle commands](#useful-gradle-commands)
-- [More info](#more-info)
-- [License](#license)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by/4.0/)
 
-## Quick start guide
-
-### Introduction to the folder structure
-
-**Build files:**
-
-| File                | Description                                              |
-| ------------------- | -------------------------------------------------------- |
-| `build.gradle`      | Configures the compilation process.                      |
-| `gradle.properties` | Contains properties for Minecraft, fabric, and your mod. |
-| `settings.gradle`   | Configures the plugin repositories.                      |
-
-**Fabric files:**
-
-These files are located at `src/main/resources`.
-
-| File                    | Description                              | Additional information                                                                                                |
-| ----------------------- | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `fabric.mod.json`       | Contains metadata about your mod.        | [wiki:fabric_mod_json_spec](https://fabricmc.net/wiki/documentation:fabric_mod_json_spec)                             |
-| `modid.mixins.json`     | Contains a list of all your mixin files. | [wiki:mixin_registration](https://fabricmc.net/wiki/tutorial:mixin_registration)                                      |
-| `assets/modid/icon.png` | The icon of your mod.                    | [wiki:fabric_mod_json_spec#icon](https://fabricmc.net/wiki/documentation:fabric_mod_json_spec?s[]=icon#custom_fields) |
-
-
-### Creating your mod
-
-First of you must replace all occurrences of `modid` with the id of your mod.
-
-If your mod doesn't use mixins you can safely remove the mixin entry in your `fabric.mod.json` as well as delete any `*.mixin.json` files.
-
-This template has the legacy fabric api included in it's build script, more info about the api can be found at it's [github repo](https://github.com/Legacy-Fabric/fabric).
-If you know what you are doing you can also safely remove the api from the build script as it isn't required.
+As the name suggests, this is a base project that has [NanoVG](https://github.com/memononen/nanovg) already setup.
 
 ### Useful gradle commands
 
@@ -68,4 +33,4 @@ If you are new to fabric or Minecraft modding in general then [this wiki page](h
 
 ## License
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/refactorinqq/NanoVGCB">NanoVG ClientBase</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/refactorinqq/">Refactoring</a> is licensed under <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"></a></p>
